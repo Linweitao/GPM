@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "TeaDefenceResult";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <title>管理员列表</title>
+</head>
+<div id="container">
+    <div id="hd"></div>
+    <div id="bd">
+        <div id="main">
+            <form id="form1" action="TeaDefenceResult" method="post">
+                <div class="search-box ue-clear">
+                    <div class="search-button">
+                        <input class="button" type="submit" name="all" value="刷新/显示全部" />
+                    </div>
+                </div>
+            </form>
+            <form id="form1" action="TeaDefenceResultSearch" method="post">
+                <div class="search-box ue-clear">
+                    <div class="search-area">
+                        <div class="kv-item ue-clear">
+                            <label>查询学生</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="studentid" placeholder="请输入学号" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="search-button">
+                        <input class="button" type="submit" name="all" value="搜索" />
+                    </div>
+                </div>
+            </form>
+
+            <div class="table">
+                <div class="grid">
+                    <div class="ui_tb">
+                        <table class="table" cellspacing="50" cellpadding="50" width="100%" align="center" border="10">
+                            <tr>
+                                <th>选题编号</th>
+                                <th>选题名称</th>
+                                <th>学生编号</th>
+                                <th>学生姓名</th>
+                                <th>开题审核情况</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var cell in @ViewBag.dt)
+                            {
+                                <tr height="40">
+
+                                    <td>@cell.TopicID</td>
+                                    <td>@cell.TopicName</td>
+                                    <td>@cell.StudentID</td>
+                                    <td>@cell.StudentName</td>
+                                    @if (@cell.IsPassed == 0)
+                                    {
+                                        <td>未审核</td>
+                                    }
+                                    else if (@cell.IsPassed == 1)
+                                    {
+                                        <td>审核通过</td>
+                                    }
+                                    else if (@cell.IsPassed == 2)
+                                    {
+                                        <td>不予通过</td>
+                                    }
+                                    <td>
+                                        <a href="TeaInsertGradePage?studentid=@cell.StudentID">成绩录入</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+
+	$('.grid').Grid({
+	    tbody: null,
+	    height: 0,
+	    checkbox: {
+	        single: true
+	    },
+	    operator: {
+	        type: "normal",
+	        width: 100
+	    },
+	    sortCallBack: function (name, index, type) {
+	        alert(name + "," + index + ',' + type);
+	    }
+
+	});
+
+
+	$('.search-box input[type=radio]').click(function(e) {
+        if($(this).prop('checked')){
+            if($(this).attr('data-define') === 'define'){
+				$('.define-input').show();
+            }else{
+				$('.define-input').hide();
+            }
+        }
+    });
+</script>
+</html>
+
+
+

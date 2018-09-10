@@ -1,0 +1,12 @@
+G:\小学期\WebTest\Models\bin\Debug\Models.dll.config
+G:\小学期\WebTest\Models\bin\Debug\Models.dll
+G:\小学期\WebTest\Models\bin\Debug\Models.pdb
+G:\小学期\WebTest\Models\bin\Debug\EntityFramework.dll
+G:\小学期\WebTest\Models\bin\Debug\EntityFramework.SqlServer.dll
+G:\小学期\WebTest\Models\bin\Debug\EntityFramework.xml
+G:\小学期\WebTest\Models\bin\Debug\EntityFramework.SqlServer.xml
+G:\小学期\WebTest\Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\小学期\WebTest\Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\小学期\WebTest\Models\obj\Debug\Models.dll
+G:\小学期\WebTest\Models\obj\Debug\Models.pdb
+G:\小学期\WebTest\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache

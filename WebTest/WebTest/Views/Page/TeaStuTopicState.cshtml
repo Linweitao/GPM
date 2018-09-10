@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "TeaStuTopicState";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <title>管理员列表</title>
+</head>
+<div id="container">
+    <div id="hd"></div>
+    <div id="bd">
+        <div id="main">
+
+            <div class="search-box ue-clear">
+                <form name="buy" action="TeaStuTopicState" method="post">
+                    <input class="button" type="submit" name="all" value="刷新/显示全部" />
+                </form>
+                <form id="form1" action="TeaStuTopicSearch" method="post">
+
+                    <div class="search-area">
+                        <div class="kv-item ue-clear">
+                            <label>选择时间：</label>
+                            <div class="kv-item-content ue-clear">
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="flag" value="6" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">全部</span>
+                                </span>
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="flag" value="0" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">未审核</span>
+                                </span>
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="flag" value="1" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">已通过</span>
+                                </span>
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="flag" value="2" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">不予通过</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-button">
+                        <input class="button" type="submit" value="搜索一下" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="table">
+                <div class="grid">
+                    <div class="ui_tb">
+                        <table class="table" cellspacing="50" cellpadding="50" width="100%" align="center" border="10">
+                            <tr>
+                                <th>选题编号</th>
+                                <th>选题名称</th>
+                                <th>学生编号</th>
+                                <th>学生名称</th>
+                                <th>审核情况</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var cell in @ViewBag.dt)
+                            {
+                                <tr height="40">
+
+                                    <td>@cell.TopicID</td>
+                                    <td>@cell.TopicName</td>
+                                    <td>@cell.StudentID</td>
+                                    <td>@cell.StudentName</td>
+                                    @if (@cell.StuIsPassed == 0)
+                                    {
+                                        <td>未审核</td>
+                                    }
+                                    else if (@cell.StuIsPassed == 1)
+                                    {
+                                        <td>审核通过</td>
+                                    }
+                                    else if (@cell.StuIsPassed == 2)
+                                    {
+                                        <td>不予通过</td>
+                                    }
+                                    @if (@cell.StuIsPassed == 0)
+                                    {
+                                        <td>
+                                            <a href="TeaStuTopicPass?topicname=@cell.TopicName&topicid=@cell.TopicID&teacherid=@cell.TeacherID&studentid=@cell.StudentID&pass=1">通过</a>
+                                            <a href="TeaStuTopicPass?topicname=@cell.TopicName&topicid=@cell.TopicID&teacherid=@cell.TeacherID&studentid=@cell.StudentID&pass=2">不通过</a>
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+
+	$('.grid').Grid({
+	    tbody: null,
+	    height: 0,
+	    checkbox: {
+	        single: true
+	    },
+	    operator: {
+	        type: "normal",
+	        width: 100
+	    },
+	    sortCallBack: function (name, index, type) {
+	        alert(name + "," + index + ',' + type);
+	    }
+
+	});
+
+
+	$('.search-box input[type=radio]').click(function(e) {
+        if($(this).prop('checked')){
+            if($(this).attr('data-define') === 'define'){
+				$('.define-input').show();
+            }else{
+				$('.define-input').hide();
+            }
+        }
+    });
+</script>
+</html>
+
+

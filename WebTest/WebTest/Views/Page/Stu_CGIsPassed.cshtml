@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <title>学生个人成绩</title>
+</head>
+<div id="container">
+    <div id="hd"></div>
+    <div id="bd">
+        <div id="main">
+            <div class="table">
+
+                <div class="grid">
+                    <div class="ui_tb" valign="top">
+                        <table class="table" cellspacing="0" cellpadding="0" width="100%" border="0">
+                            <tr>
+                                <th>学生编号</th>
+                                <th>所属评审组号</th>
+                                <th>开题报告是否通过</th>
+                            </tr>
+                            @foreach (var CGI in @ViewBag.cgi)
+                            {
+                            <tr>
+                                <td height="40" valign="top">@CGI.UserID</td>
+                                <td height="40" valign="top">@CGI.CheckGroupID</td>
+                                @if (@CGI.IsPassed == 0)
+                                {
+                                    <td height="40" valign="top">未审核</td>
+                                }
+                                else if (@CGI.IsPassed == 1)
+                                {
+                                    <td height="40" valign="top">已通过</td>
+                                }
+                                else
+                                {
+                                    <td height="40" valign="top">未通过</td>
+                                }
+                            </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+    $('select').select();
+    var head = []
+    var tbody = []
+
+    $('.grid').Grid({
+        thead: head,
+        tbody: null,
+        height: 0,
+        checkbox: {
+            single: true
+
+        },
+        operator: {
+            type: "normal",
+            width: 100
+
+        },
+        sortCallBack: function (name, index, type) {
+            alert(name + "," + index + ',' + type);
+        }
+
+    });
+
+
+
+    $('.pagination').pagination(100, {
+        callback: function (page) {
+            alert(page);
+        },
+        display_msg: false
+
+    });
+
+    $('.search-box input[type=radio]').click(function (e) {
+        if ($(this).prop('checked')) {
+            if ($(this).attr('data-define') === 'define') {
+                $('.define-input').show();
+            } else {
+                $('.define-input').hide();
+            }
+        }
+    });
+</script>
+</html>

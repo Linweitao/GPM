@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "TeaMateriallook";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/index.css" />
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <title>材料</title>
+</head>
+<div id="container">
+    <div id="hd"></div>
+    <div id="bd">
+        <div id="main">
+            <ul class="content-list">
+                <li class="content-item news">
+                    <h2 class="content-hd">
+                        <span class="opt">
+                            <span class="refresh" title="刷新"></span>
+                        </span>
+                        <span class="title">开题材料</span>
+                    </h2>
+                    <div class="content-bd">
+                        <ul class="content-list things">
+                            @foreach (var cell in @ViewBag.dt1)
+                            {
+                                <li class="content-list-item">
+                                    <i class="icon"></i>
+                                    <a href="TeaMaterialReview?fileName=@cell.MaterialFile">点击评审</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="content-item news">
+                    <h2 class="content-hd">
+                        <span class="opt">
+                            <span class="refresh" title="刷新"></span>
+                        </span>
+                        <span class="title">周志</span>
+                    </h2>
+                    <div class="content-bd">
+                        <ul class="content-list things">
+                            @foreach (var cell in @ViewBag.dt2)
+                            {
+                                <li class="content-list-item">
+                                    <i class="icon"></i>
+                                    <a href="TeaMaterialReview?fileName=@cell.MaterialFile">@cell.Week</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="content-item news">
+                    <h2 class="content-hd">
+                        <span class="opt">
+                            <span class="refresh" title="刷新"></span>
+                        </span>
+                        <span class="title">答辩材料</span>
+                    </h2>
+                    <div class="content-bd">
+                        <ul class="content-list things">
+                            @foreach (var cell in @ViewBag.dt3)
+                            {
+                                <li class="content-list-item">
+                                    <i class="icon"></i>
+                                    <a href="TeaMaterialReview?fileName=@cell.MaterialFile">点击评审</a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+
+	$('.grid').Grid({
+	    tbody: null,
+	    height: 0,
+	    checkbox: {
+	        single: true
+	    },
+	    operator: {
+	        type: "normal",
+	        width: 100
+	    },
+	    sortCallBack: function (name, index, type) {
+	        alert(name + "," + index + ',' + type);
+	    }
+
+	});
+
+
+	$('.search-box input[type=radio]').click(function(e) {
+        if($(this).prop('checked')){
+            if($(this).attr('data-define') === 'define'){
+				$('.define-input').show();
+            }else{
+				$('.define-input').hide();
+            }
+        }
+	});
+	var minwidth = 282;
+	resizeWidth();
+	$(top.window).resize(function (e) {
+	    resizeWidth();
+	});
+	$(function () {
+	    $(".content-list").sortable({
+	        revert: true,
+	        handle: 'h2'
+	    });
+
+	});
+
+	function resizeWidth() {
+	    if ($('#main').width() / 3 < minwidth) {
+	        $('.content-item').width(($('#main').width() / 2) - 15);
+	    } else {
+	        $('.content-item').width(($('#main').width() / 3) - 15);
+	    }
+
+	}
+</script>
+</html>
+
+
+
+
+

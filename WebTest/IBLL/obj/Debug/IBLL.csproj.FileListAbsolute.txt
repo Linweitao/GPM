@@ -1,0 +1,7 @@
+G:\小学期\WebTest\IBLL\bin\Debug\IBLL.dll
+G:\小学期\WebTest\IBLL\bin\Debug\IBLL.pdb
+G:\小学期\WebTest\IBLL\bin\Debug\Models.dll
+G:\小学期\WebTest\IBLL\bin\Debug\Models.pdb
+G:\小学期\WebTest\IBLL\obj\Debug\IBLL.csprojResolveAssemblyReference.cache
+G:\小学期\WebTest\IBLL\obj\Debug\IBLL.dll
+G:\小学期\WebTest\IBLL\obj\Debug\IBLL.pdb

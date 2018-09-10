@@ -1,0 +1,13 @@
+G:\小学期\WebTest\BLL\bin\Debug\BLL.dll
+G:\小学期\WebTest\BLL\bin\Debug\BLL.pdb
+G:\小学期\WebTest\BLL\bin\Debug\DAL.dll
+G:\小学期\WebTest\BLL\bin\Debug\IBLL.dll
+G:\小学期\WebTest\BLL\bin\Debug\IDAL.dll
+G:\小学期\WebTest\BLL\bin\Debug\Models.dll
+G:\小学期\WebTest\BLL\bin\Debug\DAL.pdb
+G:\小学期\WebTest\BLL\bin\Debug\IBLL.pdb
+G:\小学期\WebTest\BLL\bin\Debug\IDAL.pdb
+G:\小学期\WebTest\BLL\bin\Debug\Models.pdb
+G:\小学期\WebTest\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\小学期\WebTest\BLL\obj\Debug\BLL.dll
+G:\小学期\WebTest\BLL\obj\Debug\BLL.pdb

@@ -1,0 +1,169 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/form.css" />
+    <link href="umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery.select.js"></script>
+    <script type="text/javascript" src="~/js/WdatePicker.js"></script>
+    <script type="text/javascript">
+        window.UMEDITOR_HOME_URL = 'umeditor/';  // 请换成绝对路径
+    </script>
+    <script type="text/javascript" src="~/js/umeditor.config.js"></script>
+    <script type="text/javascript" src="~/js/editor_api.js"></script>
+    <script type="text/javascript" src="~/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <title>添加评审组</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="hd">
+        </div>
+        <div id="bd">
+            <form id="form1" action="Prof_CheckGroupEditor" method="post">
+                <input type="hidden" name="CheckGroupName" value="@ViewData["CheckGroupName"]" />
+                <div id="main">
+                    <h2 class="subfild">
+                        <span>评审组</span>
+                    </h2>
+                    <div class="subfild-content base-info">
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>评审组编号</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="CheckGroupID" value="@ViewData["CheckGroupID"]" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>负责人</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="CheckAdminTeaID" value="@ViewData["CheckAdminTeaID"]" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>评审组名</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="CheckGroupName" disabled value="@ViewData["CheckGroupName"]" />
+                            </div>
+                        </div>
+                        <label><span class="impInfo">*</span>添加教师</label>
+                        <div id="main">
+                            <div class="table">
+                                <div class="opt ue-clear">
+                                    <span class="sortarea">
+                                        <span class="sort">
+                                            <label>排序：</label>
+                                            <span class="name">
+                                                <i class="icon"></i>
+                                                <span class="text">名称</span>
+                                            </span>
+                                        </span>
+
+                                        <i class="list"></i>
+                                        <i class="card"></i>
+                                    </span>
+                                    <span class="optarea">
+                                        <a href="javascript:;" class="add">
+                                            <i class="icon"></i>
+                                            <span class="text" type="submit" href="AddManager">添加</span>
+                                        </a>
+                                    </span>
+                                </div>
+                                <div class="grid">
+                                    <div class="ui_tb" valign="top">
+                                        <table class="table" cellspacing="0" cellpadding="0" width="100%" border="0">
+
+                                            <tr>
+                                                <th width="30">
+                                                    <input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);" />
+                                                </th>
+                                                <th>教师编号</th>
+                                                <th>所在评审组</th>
+                                                <th>是否加入当前评审组</th>
+                                            </tr>
+                                            @foreach (var Tea in @ViewBag.tea)
+                                            {
+                                                <tr>
+                                                    <td height="40" valign="top"><input type="checkbox" name="IDCheck" value="14458579642011" class="" /></td>
+                                                    <td height="40" valign="top">@Tea.UserID</td>
+                                                    <td height="40" valign="top">@Tea.CheckGroupID</td>
+                                                    <td height="40" valign="top">
+                                                        <a href="Prof_AddTeaInCG?ID=@Tea.UserID" class="edit">添加</a>
+                                                        <a href="Prof_RemoveTeaInCG?ID=@Tea.UserID">移除</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="buttons">
+                            <input class="button" type="submit" value="提交编辑结果" />
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    $('select').select();
+    showRemind('input[type=text],textarea', 'color5');
+    UM.getEditor('content');
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+    $('select').select();
+    var head = []
+    var tbody = [ ]
+
+    $('.grid').Grid({
+        thead: head,
+        tbody: null,
+        height:0,
+        checkbox: {
+        single: true
+
+    },
+        operator: {
+        type : "normal",
+        width : 100
+
+    },
+        sortCallBack : function(name,index,type){
+        alert(name + "," + index + ',' + type);
+    }
+
+});
+
+
+</script>
+</html>
+

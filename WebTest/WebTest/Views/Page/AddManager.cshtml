@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/form.css" />
+    <link href="umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery.select.js"></script>
+    <script type="text/javascript" src="~/js/WdatePicker.js"></script>
+    <script type="text/javascript">
+        window.UMEDITOR_HOME_URL = 'umeditor/';  // 请换成绝对路径
+    </script>
+    <script type="text/javascript" src="~/js/umeditor.config.js"></script>
+    <script type="text/javascript" src="~/js/editor_api.js"></script>
+    <script type="text/javascript" src="~/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <title>添加管理员</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="hd">
+        </div>
+        <div id="bd">
+            <form id="form1" action="InsertUser" method="post">
+                <div id="main">
+                    <h2 class="subfild">
+                        <span>管理员</span>
+                    </h2>
+                    <div class="subfild-content base-info">
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>工号</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="UserID" value="@ViewData["UserID"]" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>密码</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="UserPassWord" value="@ViewData["UserPassWord"]"/>
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear">
+                            <label>性别</label>
+                            <div class="kv-item-content">
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="UserSex" value="0" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">男</span>
+                                </span>
+                                <span class="choose">
+                                    <span class="checkboxouter">
+                                        <input type="radio" name="UserSex" value="1" />
+                                        <span class="radio"></span>
+                                    </span>
+                                    <span class="text">女</span>
+                                </span>
+                                <span class="kv-item-tip error">必选</span>
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>名字</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="UserName" value="@ViewData["UserName"]"/>
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>邮件地址</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="UserEmail" value="@ViewData["UserEmail"]"/>
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear time">
+                            <label><span class="impInfo">*</span>手机号码</label>
+                            <div class="kv-item-content">
+                                <input type="text" name="UserMobile" value="@ViewData["UserMobile"]" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear">
+                            <label>用户身份</label>
+                            <div class="kv-item-content">
+                                <select name="Type">
+                                    <option value="4">系统管理员</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="buttons">
+                        <input class="button" type="submit" value="@ViewData["IOU"]" />
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    $('select').select();
+    showRemind('input[type=text],textarea', 'color5');
+    UM.getEditor('content');
+</script>
+</html>
+
+

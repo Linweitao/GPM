@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Stu_Materiallook";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/form.css" />
+    <link href="~/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery.select.js"></script>
+    <script type="text/javascript" src="~/js/WdatePicker.js"></script>
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript" src="~/js/umeditor.config.js"></script>
+    <script type="text/javascript" src="~/js/editor_api.js"></script>
+    <script type="text/javascript" src="~/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <title>材料评审</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="hd">
+        </div>
+        <div id="bd">
+            <div id="main">
+
+                    <form id="form1" action="Stu_MaterialList" method="post">
+                        <div class="search-box ue-clear">
+                            <div class="search-button">
+                                <input class="button" type="submit" name="all" value="返回" />
+                            </div>
+                        </div>
+                    </form>
+                    <h2 class="subfild">
+                        <span>评审建议</span>
+                    </h2>
+
+                    <div class="subfild-content remarkes-info">
+                        <div class="kv-item ue-clear">
+                            <div class="kv-item-content">
+                                @ViewBag.dt.Advice
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+	$('select').select();
+	showRemind('input[type=text],textarea','color5');
+	UM.getEditor('content');
+</script>
+</html>
+
+
+

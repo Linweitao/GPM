@@ -1,0 +1,7 @@
+G:\小学期\WebTest\IDAL\bin\Debug\IDAL.dll
+G:\小学期\WebTest\IDAL\bin\Debug\IDAL.pdb
+G:\小学期\WebTest\IDAL\bin\Debug\Models.dll
+G:\小学期\WebTest\IDAL\bin\Debug\Models.pdb
+G:\小学期\WebTest\IDAL\obj\Debug\IDAL.csprojResolveAssemblyReference.cache
+G:\小学期\WebTest\IDAL\obj\Debug\IDAL.dll
+G:\小学期\WebTest\IDAL\obj\Debug\IDAL.pdb

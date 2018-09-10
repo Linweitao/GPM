@@ -1,0 +1,5 @@
+G:\小学期\WebTest\Common\bin\Debug\Common.dll
+G:\小学期\WebTest\Common\bin\Debug\Common.pdb
+G:\小学期\WebTest\Common\obj\Debug\Common.dll
+G:\小学期\WebTest\Common\obj\Debug\Common.pdb
+G:\小学期\WebTest\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Stu_MaterialUploadPage";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/form.css" />
+    <link href="~/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery.select.js"></script>
+    <script type="text/javascript" src="~/js/WdatePicker.js"></script>
+    <script type="text/javascript">
+window.UMEDITOR_HOME_URL = 'umeditor/';  // 请换成绝对路径
+    </script>
+    <script type="text/javascript" src="~/js/umeditor.config.js"></script>
+    <script type="text/javascript" src="~/js/editor_api.js"></script>
+    <script type="text/javascript" src="~/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <title>基础信息</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="hd">
+        </div>
+        <div id="bd">
+            <div id="main">
+                <form id="form1" action="Stu_MaterialUpload" method="post" enctype="multipart/form-data">
+                    <h2 class="subfild">
+                        <span>提交材料</span>
+                    </h2>
+                    <div class="kv-item ue-clear">
+                        <label>材料类型</label>
+                        <div class="kv-item-content">
+                            <select name="taskid">
+                                <option value="1">开题材料</option>
+                                <option value="2">周志</option>
+                                <option value="3">答辩材料</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="kv-item ue-clear">
+                        <label>周志周数</label>
+                        <div class="kv-item-content">
+                            <select name="week">
+                                <option value="1">第1周</option>
+                                <option value="2">第2周</option>
+                                <option value="3">第3周</option>
+                                <option value="4">第4周</option>
+                                <option value="5">第5周</option>
+                                <option value="6">第6周</option>
+                                <option value="7">第7周</option>
+                                <option value="8">第8周</option>
+                                <option value="9">第9周</option>
+                                <option value="10">第10周</option>
+                                <option value="11">第11周</option>
+                                <option value="12">第12周</option>
+                                <option value="13">第13周</option>
+                                <option value="14">第14周</option>
+                                <option value="15">第15周</option>
+                                <option value="16">第16周</option>
+                            </select>
+                        </div>
+                        <span class="kv-item-tip success">若材料类型为周志则必填</span>
+                    </div>
+                    <div class="kv-item ue-clear">
+                        <label><span class="impInfo">*</span>提交文件</label>
+                        <div class="kv-item-content file">
+                            <span class="text"></span>
+                            <input type="file" name="file"/>
+                            <input type="button" class="button normal long2" value="浏览.." />
+                        </div>
+                        <span class="kv-item-tip success">最好以压缩文件类型提交</span>
+                    </div>
+                    <div class="buttons">
+                        <input class="button" type="submit" value="确认提交" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+	$('select').select();
+	showRemind('input[type=text],textarea','color5');
+	UM.getEditor('content');
+</script>
+</html>
+

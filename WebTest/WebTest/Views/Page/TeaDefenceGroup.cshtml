@@ -1,0 +1,140 @@
+﻿
+@{
+    ViewBag.Title = "TeaDefenceGroup";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="~/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/WdatePicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/form.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/skin_/table.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.grid.css" />
+    <link href="~/umeditor/themes/default/_css/umeditor.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="~/js/jquery.js"></script>
+    <script type="text/javascript" src="~/js/global.js"></script>
+    <script type="text/javascript" src="~/js/jquery.select.js"></script>
+    <script type="text/javascript" src="~/js/WdatePicker.js"></script>
+    <script type="text/javascript" src="~/js/umeditor.config.js"></script>
+    <script type="text/javascript" src="~/js/editor_api.js"></script>
+    <script type="text/javascript" src="~/umeditor/lang/zh-cn/zh-cn.js"></script>
+    <title>基础信息</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="hd">
+        </div>
+        <div id="bd">
+            @if (ViewBag.IfInGroup != 0)
+            {
+                <div id="main">
+                    <h1 class="subfild"><span>答辩组</span></h1>
+                    <h2 class="subfild">
+                        <span>基本信息</span>
+                    </h2>
+                    <div class="subfild-content base-info">
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>答辩组编号</label>
+                            <div class="kv-item-content">
+                                <input type="text" disabled name="score" value="@ViewBag.dt[0].GroupID" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>负责人编号</label>
+                            <div class="kv-item-content">
+                                <input type="text" disabled name="score" value="@ViewBag.dt[0].AdminTeaID" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>答辩时间</label>
+                            <div class="kv-item-content">
+                                <input type="text" disabled name="score" value="@ViewBag.dt[0].GroupTime" />
+                            </div>
+                        </div>
+                        <div class="kv-item ue-clear">
+                            <label><span class="impInfo">*</span>答辩地点</label>
+                            <div class="kv-item-content">
+                                <input type="text" disabled name="score" value="@ViewBag.dt[0].GroupAddress" />
+                            </div>
+                        </div>
+                    </div>
+                    <h1 class="subfild"><span>所属成员</span></h1>
+                    <div class="table">
+                        <div class="grid">
+                            <div class="ui_tb">
+                                <table class="table" cellspacing="50" cellpadding="50" width="100%" align="center" border="10">
+                                    <tr>
+                                        <th>教师编号</th>
+                                        <th>教师姓名</th>
+                                        <th>邮箱</th>
+                                        <th>电话</th>
+                                    </tr>
+                                    @foreach (var cell in @ViewBag.dt)
+                                    {
+                                        <tr height="40">
+
+                                            <td>@cell.TeacherID</td>
+                                            <td>@cell.TeacherName</td>
+                                            <td>@cell.TeacherEmail</td>
+                                            <td>@cell.TeacherMobile</td>
+
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pagination"></div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id="main">
+                    <h1 >尚未加入答辩组</h1>
+                 </div>
+            }
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript" src="~/js/global.js"></script>
+<script type="text/javascript" src="~/js/jquery.select.js"></script>
+<script type="text/javascript" src="~/js/core.js"></script>
+<script type="text/javascript" src="~/js/jquery.pagination.js"></script>
+<script type="text/javascript" src="~/js/jquery.grid.js"></script>
+<script type="text/javascript" src="~/js/WdatePicker.js"></script>
+<script type="text/javascript">
+
+	$('.grid').Grid({
+	    tbody: null,
+	    height: 0,
+	    checkbox: {
+	        single: true
+	    },
+	    operator: {
+	        type: "normal",
+	        width: 100
+	    },
+
+	});
+
+
+	$('.search-box input[type=radio]').click(function(e) {
+        if($(this).prop('checked')){
+            if($(this).attr('data-define') === 'define'){
+				$('.define-input').show();
+            }else{
+				$('.define-input').hide();
+            }
+        }
+    });
+</script>
+
+</html>
+
+
