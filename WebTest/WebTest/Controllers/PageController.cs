@@ -460,6 +460,8 @@ namespace WebTest.Controllers
         }
         public ActionResult InsertUser(User Obj) //添加各种用户
         {
+            if (Obj.UserID == null || Obj.UserName == null || Obj.UserPassWord == null)
+                return AddUser();
             rsklldb.OpenConnection();
             string sql2 = "select * from [User] where UserID = '" + Obj.UserID + "'";
             List<User> list = rsklldb.Detail<User>(sql2);
