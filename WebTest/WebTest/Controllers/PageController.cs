@@ -52,10 +52,14 @@ namespace WebTest.Controllers
             List<User> list = rsklldb.Detail<User>(sql);
 
             if (list.Count == 0 || list[0].UserPassWord != password)
-                return View("Login");
+            {
+                Response.Write("<script>alert('账号或密码错误!')</script>");
+                return Login();
+            }
             else
             {
                 Session["UserID"] = list[0].UserID;
+                Session["UserName"] = list[0].UserName;
                 //根据用户type选择对应用户界面
                 switch (list[0].Type)
                 {
@@ -90,7 +94,11 @@ namespace WebTest.Controllers
             try
             {
                 if(topicname==""||topicid== "" || starttime== "" || endtime== "")
-                    return View("TeaDoTopicInsert");
+                {
+                    Response.Write("<script>alert('输入信息不完整!')</script>");
+                    return View("TeaTopicInsertPage");
+                }
+
                 rsklldb.OpenConnection();
                 string sql0 = "SELECT * FROM [TopicInformation] WHERE TopicID = '" + topicid + "'";
                 List<TopicInformation> list = rsklldb.Detail<TopicInformation>(sql0);
@@ -100,18 +108,20 @@ namespace WebTest.Controllers
                     VALUES('" + topicid + "','" + teacherid + "','" + topicname + "','" + topicinfo + "','" + starttime + "','" + endtime + "',0)";
                     rsklldb.InsertData(sql);
                     rsklldb.CloseConnection();
-
+                    Response.Write("<script>alert('插入选题成功')</script>");
                     return View("TeaTopicInsertPage");
                 }
                 else
                 {
-                    return View("TeaDoTopicInsert");
+                    Response.Write("<script>alert('选题编号重复!')</script>");
+                    return View("TeaTopicInsertPage");
                 }
 
             }
             catch(Exception ex)
             {
-                return View("TeaDoTopicInsert");
+                Response.Write("<script>alert('有错误!')</script>");
+                return View("TeaTopicInsertPage");
             }
 
         }
@@ -146,17 +156,20 @@ namespace WebTest.Controllers
             try
             {
                 if (topicname == "" || topicid == "" || starttime == "" || endtime == "")
+                {
+                    Response.Write("<script>alert('更新信息不足!')</script>");
                     return TeaCheckTopicUpdatePage(topicid);
+                }
                 rsklldb.OpenConnection();
                 string sql = @"UPDATE [dbo].[TopicInformation] SET [TeacherID] = '"+teacherid+ "' ,[TopicName] = '"+topicname+"' ,[TopicInfo] = '"+topicinfo+"' ,[StartTime] = '"+starttime+"',[EndTime] = '"+endtime+"' ,[ProIfPassed] = 0 WHERE TopicID ="+topicid;
                 rsklldb.InsertData(sql);
                 rsklldb.CloseConnection();
-
                 return TeaCheckTopic();
 
             }
             catch (Exception ex)
             {
+                Response.Write("<script>alert('有错误!')</script>");
                 return TeaCheckTopicUpdatePage(topicid);
             }
 
@@ -415,19 +428,19 @@ namespace WebTest.Controllers
         public ActionResult SelectUser()
         {
             rsklldb.OpenConnection();
-            string sql = "select * from [User] where  Type<>4";
+            string sql = "select * from [User] where  Type<>4 ORDER BY Type DESC";
             List<User> list = rsklldb.Detail<User>(sql);
             @ViewBag.dt = list;
             return View("SelectUser");
         }
         public ActionResult AddUser()
         {
-            @ViewData["IOU"] = "确认添加";
+            @ViewBag.deal = "确认添加";
             return View("AddUser");
         }
         public ActionResult AddManager()
         {
-            @ViewData["IOU"] = "确认添加";
+            @ViewBag.deal = "确认添加";
             return View("AddManager");
         }
         public ActionResult DeleteUser(string ID) //删除各种用户
@@ -453,7 +466,7 @@ namespace WebTest.Controllers
         {
             if (all == "刷新/显示全部") userid = "";
             rsklldb.OpenConnection();
-            string sql = "select * from [User] where UserID like '%" + userid + "%'and Type<>4";
+            string sql = "select * from [User] where UserID like '%" + userid + "%'and Type<>4 ORDER BY Type DESC";
             List<User> list = rsklldb.Detail<User>(sql);
             @ViewBag.dt = list;
             return View("SelectUser");
@@ -461,7 +474,11 @@ namespace WebTest.Controllers
         public ActionResult InsertUser(User Obj) //添加各种用户
         {
             if (Obj.UserID == null || Obj.UserName == null || Obj.UserPassWord == null)
+            {
+                Response.Write("<script>alert('信息填写不全!')</script>");
                 return AddUser();
+            }
+
             rsklldb.OpenConnection();
             string sql2 = "select * from [User] where UserID = '" + Obj.UserID + "'";
             List<User> list = rsklldb.Detail<User>(sql2);
@@ -503,8 +520,9 @@ namespace WebTest.Controllers
             @ViewData["UserEmail"] = list[0].UserEmail;
             @ViewData["UserMobile"] = list[0].UserMobile;
             @ViewData["UserPassWord"] = list[0].UserPassWord;
-            @ViewData["IOU"] = "确认修改";
-            return AddUser();
+            @ViewData["Type"] = list[0].Type;
+            @ViewBag.deal = "确认修改";
+            return View("AddUser");
         }
 
 
@@ -607,7 +625,11 @@ namespace WebTest.Controllers
             try
             {
                 if (topicname == "" || topicid == "" || starttime == "" || endtime == "")
+                {
+                    Response.Write("<script>alert('输入信息不完整!')</script>");
                     return View("Prof_DoTopicInsert");
+                }
+
                 rsklldb.OpenConnection();
                 string sql0 = "SELECT * FROM [TopicInformation] WHERE TopicID = '" + topicid + "'";
                 List<TopicInformation> list = rsklldb.Detail<TopicInformation>(sql0);
@@ -617,17 +639,19 @@ namespace WebTest.Controllers
                     VALUES('" + topicid + "','" + teacherid + "','" + topicname + "','" + topicinfo + "','" + starttime + "','" + endtime + "',1)";
                     rsklldb.InsertData(sql);
                     rsklldb.CloseConnection();
-
+                    Response.Write("<script>alert('插入选题成功!')</script>");
                     return View("Prof_TopicInsertPage");
                 }
                 else
                 {
+                    Response.Write("<script>alert('选题ID重复!')</script>");
                     return View("Prof_DoTopicInsert");
                 }
 
             }
             catch (Exception ex)
             {
+                Response.Write("<script>alert('出现错误!')</script>");
                 return View("Prof_TopicInsertPage");
             }
 

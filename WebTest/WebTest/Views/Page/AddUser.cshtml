@@ -89,19 +89,20 @@
                             <label>用户权限</label>
                             <div class="kv-item-content">
                                 <select name="Type">
-                                    <option value="4">系统管理员</option>
                                     <option value="0">学生</option>
                                     <option value="1">指导教师</option>
                                     <option value="2">责任教授</option>
                                     <option value="3">教学干事</option>
+                                    <option value="4">系统管理员</option>
                                 </select>
                             </div>
                             <span class="kv-item-tip error">必选</span>
                         </div>
 
                     </div>
+                    @ViewBag.deal
                     <div class="buttons">
-                        <input class="button" type="submit" value="@ViewData["IOU"]" />
+                        <input class="button" type="submit" value="@ViewBag.deal" />
                     </div>
                 </div>
         </div>

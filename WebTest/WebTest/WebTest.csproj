@@ -261,7 +261,6 @@
     <Content Include="Views\Page\Stu_InGroup.cshtml" />
     <Content Include="Views\Page\Stu_SearchGrade.cshtml" />
     <Content Include="Views\Page\Stu_SelectTopic.cshtml" />
-    <Content Include="Views\Page\TeaDoTopicInsert.cshtml" />
     <Content Include="Views\Page\TeaCheckTopicUpdatePage.cshtml" />
     <Content Include="Views\Page\Prof_DoTopicInsert.cshtml" />
   </ItemGroup>
