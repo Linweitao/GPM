@@ -606,13 +606,25 @@ namespace WebTest.Controllers
         {
             try
             {
+                if (topicname == "" || topicid == "" || starttime == "" || endtime == "")
+                    return View("Prof_DoTopicInsert");
                 rsklldb.OpenConnection();
-                string sql = @"INSERT INTO [dbo].[TopicInformation]([TopicID] ,[TeacherID],[TopicName] ,[TopicInfo] ,[StartTime],[EndTime],[ProIfPassed])
-                 VALUES('" + topicid + "','" + teacherid + "','" + topicname + "','" + topicinfo + "','" + starttime + "','" + endtime + "',1)";
-                rsklldb.InsertData(sql);
-                rsklldb.CloseConnection();
-                @ViewData["yes"] = "选题录入成功!";
-                return View("Prof_TopicInsertPage");
+                string sql0 = "SELECT * FROM [TopicInformation] WHERE TopicID = '" + topicid + "'";
+                List<TopicInformation> list = rsklldb.Detail<TopicInformation>(sql0);
+                if (list.Count == 0)
+                {
+                    string sql = @"INSERT INTO [dbo].[TopicInformation]([TopicID] ,[TeacherID],[TopicName] ,[TopicInfo] ,[StartTime],[EndTime],[ProIfPassed])
+                    VALUES('" + topicid + "','" + teacherid + "','" + topicname + "','" + topicinfo + "','" + starttime + "','" + endtime + "',1)";
+                    rsklldb.InsertData(sql);
+                    rsklldb.CloseConnection();
+
+                    return View("Prof_TopicInsertPage");
+                }
+                else
+                {
+                    return View("Prof_DoTopicInsert");
+                }
+
             }
             catch (Exception ex)
             {
