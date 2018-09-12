@@ -128,14 +128,6 @@
 
     });
 
-    $('.grid').Grid('addLoading');
-
-    /// 模拟异步
-    setTimeout(function () {
-        $('.grid').Grid('setData', tbody, head);
-    }, 2000)
-
-
     $('.pagination').pagination(100, {
         callback: function (page) {
             alert(page);

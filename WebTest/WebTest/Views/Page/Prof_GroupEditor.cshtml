@@ -44,7 +44,8 @@
                         <div class="kv-item ue-clear">
                             <label><span class="impInfo">*</span>答辩组编号</label>
                             <div class="kv-item-content">
-                                <input type="text" name="GroupID" value="@ViewData["GroupID"]" />
+                                <input type="text" name="GroupID" disabled value="@ViewData["GroupID"]" />
+                                <input type="hidden" name="GroupID" value="@ViewData["GroupID"]" />
                             </div>
                         </div>
                         <div class="kv-item ue-clear time">
@@ -168,13 +169,6 @@
     }
 
 });
-
-$('.grid').Grid('addLoading');
-
-/// 模拟异步
-setTimeout(function(){
-        $('.grid').Grid('setData', tbody, head);
-    },2000)
 
 
 $('.pagination').pagination(100,{

@@ -130,7 +130,7 @@ namespace WebTest.Controllers
         public ActionResult TeaCheckTopic()
         {
             rsklldb.OpenConnection();
-            string sql = "SELECT * FROM [TopicInformation] WHERE TeacherID = '"+ Session["UserID"] + "'";
+            string sql = "SELECT * FROM [TopicInformation] WHERE TeacherID = '"+ Session["UserID"] + "' ORDER BY TopicID";
             ViewBag.dt = rsklldb.Detail<TopicInformation>(sql);
             rsklldb.CloseConnection();
             return View("TeaCheckTopic");
@@ -379,7 +379,7 @@ namespace WebTest.Controllers
             rsklldb.OpenConnection();
             string sql1 = "SELECT * FROM [StuMaterial] WHERE StudentID = '" + studentid + "' AND TaskID = 1";
             ViewBag.dt1 = rsklldb.Detail<StuMaterial>(sql1);
-            string sql2 = "SELECT * FROM [StuMaterial] WHERE StudentID = '" + studentid + "' AND TaskID = 2";
+            string sql2 = "SELECT * FROM [StuMaterial] WHERE StudentID = '" + studentid + "' AND TaskID = 2 ORDER BY Week";
             ViewBag.dt2 = rsklldb.Detail<StuMaterial>(sql2);
             string sql3 = "SELECT * FROM [StuMaterial] WHERE StudentID = '" + studentid + "' AND TaskID = 3";
             ViewBag.dt3 = rsklldb.Detail<StuMaterial>(sql3);
@@ -489,7 +489,7 @@ namespace WebTest.Controllers
             {
                 string sql4 = "insert into [Student]  (UserID) values('" + Obj.UserID + "')";
                 rsklldb.InsertData(sql4);
-                string sql5 = "insert into [Grade]  (UserID) values('" + Obj.UserID + "')";
+                string sql5 = "insert into [Grade]  (UserID,) values('" + Obj.UserID + "')";
                 rsklldb.InsertData(sql5);
             }
             else if (Obj.Type == 1)
@@ -583,7 +583,7 @@ namespace WebTest.Controllers
         public ActionResult Prof_permission() //责任教授查看所有指导教师
         {
             rsklldb.OpenConnection();
-            string sql = "select * from [Teacher]";
+            string sql = "select * from [Teacher] ORDER BY UserID";
             List<Teacher> list = rsklldb.Detail<Teacher>(sql);
             @ViewBag.tea = list;
             return View("Prof_permission");
@@ -660,7 +660,7 @@ namespace WebTest.Controllers
         public ActionResult Prof_TopicCheck()
         {
             rsklldb.OpenConnection();
-            string sql = "select * from [TopicInformation]";
+            string sql = "select * from [TopicInformation] ORDER BY TopicID";
             List<TopicInformation> list = rsklldb.Detail<TopicInformation>(sql);
             @ViewBag.top = list;
             return View("Prof_TopicCheck");
@@ -739,7 +739,7 @@ namespace WebTest.Controllers
             @ViewData["CheckGroupID"] = list[0].CheckGroupID;
             @ViewData["CheckAdminTeaID"] = list[0].CheckAdminTeaID;
             CGObj = list[0];
-            string sql1 = "select * from [Teacher]";
+            string sql1 = "select * from [Teacher] ORDER BY UserID";
             List<Teacher> list1 = rsklldb.Detail<Teacher>(sql1);
             @ViewBag.tea = list1;
             return View("Prof_CheckGroupEditor");
@@ -825,7 +825,7 @@ namespace WebTest.Controllers
             @ViewData["GroupTime"] = list[0].GroupTime;
             @ViewData["GroupAddress"] = list[0].GroupAddress;
             GObj = list[0];
-            string sql1 = "select * from [Teacher]";
+            string sql1 = "select * from [Teacher] ORDER BY UserID";
             List<Teacher> list1 = rsklldb.Detail<Teacher>(sql1);
             @ViewBag.tea = list1;
             return View("Prof_GroupEditor");
@@ -928,7 +928,7 @@ namespace WebTest.Controllers
             rsklldb.OpenConnection();
             string sql1 = "SELECT * FROM [StuMaterial] WHERE StudentID ='" + Session["UserID"] + "' AND TaskID = 1";
             ViewBag.dt1 = rsklldb.Detail<StuMaterial>(sql1);
-            string sql2 = "SELECT * FROM [StuMaterial] WHERE StudentID ='" + Session["UserID"] + "' AND TaskID = 2";
+            string sql2 = "SELECT * FROM [StuMaterial] WHERE StudentID ='" + Session["UserID"] + "' AND TaskID = 2 ORDER BY Week";
             ViewBag.dt2 = rsklldb.Detail<StuMaterial>(sql2);
             string sql3 = "SELECT * FROM [StuMaterial] WHERE StudentID ='" + Session["UserID"] + "' AND TaskID = 3";
             ViewBag.dt3 = rsklldb.Detail<StuMaterial>(sql3);
@@ -977,6 +977,7 @@ namespace WebTest.Controllers
                 rsklldb.InsertData(sql);
                 rsklldb.CloseConnection();
                 file.SaveAs(Path.Combine(filePath, FileName));
+                Response.Write("<script>alert('周志上传成功!')</script>");
                 return View("Stu_MaterialUploadPage");
             }
             else
@@ -997,6 +998,7 @@ namespace WebTest.Controllers
                 rsklldb.InsertData(sql);
                 rsklldb.CloseConnection();
                 file.SaveAs(Path.Combine(filePath, FileName));
+                Response.Write("<script>alert('材料上传成功!')</script>");
                 return View("Stu_MaterialUploadPage");
             }
 
